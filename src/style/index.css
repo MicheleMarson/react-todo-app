@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root{
+  --bg:#2B2D40;
+  --text-color:#fff;
+  --gradient-color:linear-gradient(#1ED688,#0288B2);
+  --transition-sec: .250s;
+}
+
+body {
+  font-family:"Roboto", sans-serif;
+  color:var(--text-color);
+  background:var(--bg);
+}
+
+input{
+  font-size: 1.2rem;
+  outline: none;
+  font-weight: 400;
+}
+
+input::placeholder{
+  color: rgba(255, 255, 255, 0.603);
+}
+
+.app__title{
+  font-size: 3rem;
+  background: var(--gradient-color);
+  text-align: center;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app__inputBox{
+  position: relative;
+  padding: 60px;
+}
+
+/* --------------------input -------------------------------------------*/
+.app__input{
+  position: absolute;
+  position: relative;
+  width: 650px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.app__inputBox input{
+  /* width: 100%; */
+  background: none;
+  border: none;
+  padding: 10px;
+  color: white;
+}
+
+#input-wrap{
+  display: flex;
+}
+
+#input-task{
+  flex: 2;
+  animation: data 2s;
+}
+
+#input-date{
+  animation: data 2s;
+}
+
+#input-border{
+  width: 100%;
+  position: absolute;
+  left: 0%;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #1ED688,#0288B2);
+  animation: input 2s ;
+}
+
+.app__add{
+  border: #fff;
+  animation: plus 2s;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  background: var(--gradient-color);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.app__add:hover #plus-h,.app__add:hover #plus-w{
+  background: var(--bg);
+}
+
+#plus-h, #plus-w{
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  width: 30px;
+  height:5px;
+  border-radius: 6px;
+  background: #fff;
+  transition: background-color var(--transition-sec) ease;
+}
+
+#plus-h{
+  transform: rotate(90deg);
+}
+
+input::-webkit-datetime-edit{
+  display: none;
+}
+
+input::-webkit-calendar-picker-indicator{
+  filter: invert(1);
+}
+/* --------------------input ------------------------------------------------*/
+
+
+
+
+
+/* ----------------------------animation ----------------------------------- */
+
+@keyframes input {
+  0%{
+    opacity: 0;
+    width: 0%;
+  }
+  100%{
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes plus {
+  0%{
+    opacity: 0;
+    left: 20%;
+  }
+  100%{
+    opacity: 1;
+    left: 50%;
+  }
+}
+
+@keyframes data{
+  0%{opacity: 0;}100%{opacity: 1;}
+}
