@@ -8,6 +8,10 @@
   --transition-sec: .250s;
 }
 
+html{
+  width: 100vw;
+}
+
 *{
   color: #fff;
   margin: 0;
@@ -134,7 +138,7 @@ input::-webkit-calendar-picker-indicator{
 
 .no-data{
   text-align: center;
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 

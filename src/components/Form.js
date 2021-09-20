@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import {currentDate} from "../currentDate"
 
 const Form = ({getData, APIData}) => {
-  let curr = new Date();
-  const url = process.env.REACT_APP_URL
-  curr.setDate(curr.getDate());
-  let date =  curr.toISOString().substr(0,10)
-  const [inputDate, setInputDate] = useState(date)
+  // date is the time the task shoud be finished
+  // setting the default date
+  const url = process.env.REACT_APP_URL 
+  // let curr = new Date();
+  // curr.setDate(curr.getDate());
+  // let date =  curr.toISOString().substr(0,10)
+  // setting the default date
+
+  const [inputDate, setInputDate] = useState(currentDate) // if date is not provided get the current date
   const [newTask, setNewTask] = useState("") // set new task
 
   
@@ -18,10 +23,10 @@ const Form = ({getData, APIData}) => {
         date: inputDate,
         checked: false
       }).then(() => getData())
+
       // after submition reset values
-      console.log(APIData);
       setNewTask("")
-      setInputDate(date)
+      setInputDate(currentDate)
     }
   }
 

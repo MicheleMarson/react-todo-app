@@ -26,24 +26,31 @@ svg:hover{
 
 .todo div{
   margin: 10px;
-  /* padding: 6px; */
+  background: none;
+}
+
+.todo__check > div{
   height: 34px;
   width: 34px;
-  background: none;
 }
 
 .todo__task{
   padding-left: 4px;
   flex:2;
-  min-height: 34px;
   display: flex;
   align-items: center;
+  height: auto;
+  min-height: 34px;
+}
+
+.todo__date{
+  flex-shrink: 6;
+  font-size: 14px;
 }
 
 .todo__task > *{
   width: 100%;
 }
-
 
 .todo__check svg{
   display: none;
@@ -65,10 +72,6 @@ svg:hover{
 .todo__check div:hover{
   background: rgba(255,255,255,0.5);
 }
-
-/* .todo__update{
-  position: relative;
-} */
 
 .todo__update > div{
   height: 100%;

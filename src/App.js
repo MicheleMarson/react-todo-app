@@ -9,7 +9,9 @@ function App() {
 
   const getData = () => {
     axios.get(url)
-      .then(data => setAPIData(data.data))
+      .then(data => {
+        setAPIData(data.data)
+      })
   }
 
   useEffect(() => {
@@ -23,7 +25,7 @@ function App() {
       {APIData.length !== 0 ? (
         <Box APIData={APIData} getData={getData} />
       ):(
-        <h2 className="no-data">No new todos</h2>
+        <h2 className="no-data">Todo list empty</h2>
       )}
     </div>
   );

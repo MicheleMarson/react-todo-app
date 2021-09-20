@@ -5,6 +5,7 @@ import "../style/box.css"
 import Todo from './Todo'
 
 const Box = ({APIData, getData}) => {
+  const [filterValues, setFilterValues] = useState({checked:"all", date:"all"})
 
   return (
     <div className="box">
@@ -13,14 +14,14 @@ const Box = ({APIData, getData}) => {
         <div className="box__select">
           <div className="box__select-date">
             <select name="date" className="date">
-              <option value="all" selected>all</option>
+              <option value="all" selected disabled>date</option>
               <option value="newest">newest</option>
               <option value="oldest">oldest</option>
             </select>
           </div>
           <div className="box__select-completed">
-            <select>
-              <option value="all" selected>all</option>
+            <select name="is-completed">
+              <option value="all" selected disabled>not/completed</option>
               <option value="">completed</option>
               <option value="">not completed</option>
             </select>
@@ -29,11 +30,10 @@ const Box = ({APIData, getData}) => {
         <div className="box__bottom"></div>
       </form>
       <section className="box__todos">
-        {APIData ? (APIData.map(item => (
+        {APIData && (APIData.map(item => (
           <Todo getData={getData} key={item.id} task={item.task} date={item.date} 
           checked={item.checked} id={item.id} />
-        ))
-        ):(<p>no tasks</p>)}
+        )))}
       </section>
     </div>
   )

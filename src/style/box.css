@@ -1,5 +1,5 @@
 .box{
-  max-width: 800px;
+  width: 800px;
   opacity: 1;
   animation: show 3s;
   margin: 30px auto;
@@ -39,7 +39,7 @@ select::-ms-expand {
 
 .box__search{
   position: relative;
-  max-width: 800px;
+  width: 100%;
   display: flex;
   margin: auto;
 }
@@ -60,6 +60,7 @@ select::-ms-expand {
 
 .box__todos{
   margin-top: 36px;
+  width: 100%;
 }
 
 @keyframes show {
