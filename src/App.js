@@ -10,20 +10,21 @@ function App() {
   const getData = () => {
     axios.get(url)
       .then(data => setAPIData(data.data))
-    
-      console.log(APIData);
   }
 
   useEffect(() => {
     getData()
   },[])
   
-  
   return (
     <div className="app">
       <h1 className="app__title">Todo App</h1>
-      <Form getData={getData}/>
-      <Box APIData={APIData} getData={getData} />
+      <Form APIData={APIData} getData={getData}/>
+      {APIData.length !== 0 ? (
+        <Box APIData={APIData} getData={getData} />
+      ):(
+        <h2 className="no-data">No new todos</h2>
+      )}
     </div>
   );
 }

@@ -11,12 +11,17 @@ svg:hover{
 }
 
 .todo{
+  transition: all .2s ;
   margin: 10px 0;
   display: flex;
   width: 100%;
   align-items: flex-start;
   border-radius: 36px;
   background: var(--light-black);
+}
+
+.todo.updating{
+  background: #375A65;
 }
 
 .todo div{
@@ -28,19 +33,45 @@ svg:hover{
 }
 
 .todo__task{
+  padding-left: 4px;
   flex:2;
   min-height: 34px;
   display: flex;
   align-items: center;
 }
 
+.todo__task > *{
+  width: 100%;
+}
+
 
 .todo__check svg{
   display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.todo__check.is-checked svg{
+  display: block;
 }
 
 .todo__check div{
+  cursor: pointer;
   margin: 0;
   border-radius: 50%;
   border: 2px solid #fff;
+}
+
+.todo__check div:hover{
+  background: rgba(255,255,255,0.5);
+}
+
+/* .todo__update{
+  position: relative;
+} */
+
+.todo__update > div{
+  height: 100%;
+  margin: 0;
+  width: 100%;
 }

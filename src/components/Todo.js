@@ -1,36 +1,64 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 import "../style/todo.css"
+import SaveIcon from './SaveIcon'
+import UpdateIcon from './UpdateIcon'
 // import update from "../img/pencil.svg"
 
-const Todo = ({task, id, date, checked, handleDelete, getData}) => {
+const Todo = ({task, id, date, checked, getData}) => {
   const [newTask, setNewTaks] = useState(task)
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(checked)
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [unfinished, setUnfinished] = useState(false) // check if task was completed in time
   const url = process.env.REACT_APP_URL
+
+
+  const handleDelete = (id) => {
+    axios.delete(url+"/"+id)
+      .then(() => getData())
+  }
+
 
   const handleComplete = (id) => {
     setIsChecked(!isChecked)
     axios.put(url+"/"+id, {
-      checked:isChecked
+      checked:!isChecked
     }).then(() => getData())
   }
 
   const taskUpdate = (id) => {
+    setIsUpdating(!isUpdating)
     axios.put(url+"/"+id, {
       task:newTask
     }).then(() => getData())
+    console.log("task:",task);
+    console.log("newTask:",newTask);
   }
 
+  // const saveUpdate = (id) => {
+  // }
+
+  // -------------style----------------------------
   const check = {
     textDecoration:checked?"line-through":"none",
     color: checked?"rgba(255,255,255,0.5)":"#fff"
   }
 
+  const iconCheck = {
+    display: checked?"block":"none"
+  }
+
+  const displayCheckOnUpdate = {
+    display: isUpdating?"none":"block"
+  }
+  // -------------style----------------------------
+
   return (
-    <div className="todo">
-      <div onClick={() => handleComplete(id)} className="todo__check">
+    <div className={`todo ${isUpdating?"updating":""}`}>
+      <div style={displayCheckOnUpdate} onClick={() => handleComplete(id)} 
+        className={`todo__check ${checked?"is-checked":""}`}>
         <div>
-          <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 507.2 507.2" style={{"enable-background":"new 0 0 507.2 507.2"}}>
+          <svg style={iconCheck} version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 507.2 507.2" style={{"enable-background":"new 0 0 507.2 507.2"}}>
             <circle style={{"fill":"#32BA7C"}} cx="253.6" cy="253.6" r="253.6"/>
             <path style={{"fill":"#0AA06E"}} d="M188.8,368l130.4,130.4c108-28.8,188-127.2,188-244.8c0-2.4,0-4.8,0-7.2L404.8,152L188.8,368z"/>
             <path style={{"fill":"#FFFFFF"}} d="M260,310.4c11.2,11.2,11.2,30.4,0,41.6l-23.2,23.2c-11.2,11.2-30.4,11.2-41.6,0L93.6,272.8
@@ -41,18 +69,17 @@ const Todo = ({task, id, date, checked, handleDelete, getData}) => {
         </div>
       </div>
       <div className="todo__task">
-        <p style={check}>{task}</p>
+        {isUpdating?(
+          <input onChange={(e) => setNewTaks(e.target.value)} className="todo__input-update" value={newTask} type="text" />
+        ):(<p style={check}>{task}</p>)}
       </div>
       <div onClick={() => taskUpdate(id)} className="todo__update">
-        <svg version="1.1" id="Layer_1" x="0px" y="0px"
-          viewBox="0 0 300 300" style={{"enable-background":"new 0 0 300 300"}}>
-          <path d="M149.996,0C67.157,0,0.001,67.161,0.001,149.997S67.157,300,149.996,300s150.003-67.163,150.003-150.003
-          S232.835,0,149.996,0z M221.302,107.945l-14.247,14.247l-29.001-28.999l-11.002,11.002l29.001,29.001l-71.132,71.126
-          l-28.999-28.996L84.92,186.328l28.999,28.999l-7.088,7.088l-0.135-0.135c-0.786,1.294-2.064,2.238-3.582,2.575l-27.043,6.03
-          c-0.405,0.091-0.817,0.135-1.224,0.135c-1.476,0-2.91-0.581-3.973-1.647c-1.364-1.359-1.932-3.322-1.512-5.203l6.027-27.035
-          c0.34-1.517,1.286-2.798,2.578-3.582l-0.137-0.137L192.3,78.941c1.678-1.675,4.404-1.675,6.082,0.005l22.922,22.917
-          C222.982,103.541,222.982,106.267,221.302,107.945z" fill="#36D2F4"/>
-        </svg>
+        <div style={{display: isUpdating?"block":"none"}} className="todo__update-save">
+          <SaveIcon/>
+        </div>
+        <div style={{display: isUpdating?"none":"block"}} className="todo__update-updating">
+          <UpdateIcon/>
+        </div>
       </div>
       <div onClick={() => handleDelete(id)} className="todo__delete">
         <svg height="512pt" viewBox="0 0 512 512" width="512pt">

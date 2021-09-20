@@ -29,6 +29,10 @@ input{
   font-weight: 400;
 }
 
+p{
+  font-size: 1.2rem;
+}
+
 input::placeholder{
   color: rgba(255, 255, 255, 0.603);
 }
@@ -72,7 +76,7 @@ input::placeholder{
 }
 
 #input-date{
-  animation: data 2s;
+  animation: data 2.3s;
 }
 
 #input-border{
@@ -125,8 +129,13 @@ input::-webkit-datetime-edit{
 input::-webkit-calendar-picker-indicator{
   filter: invert(1);
 }
+
 /* --------------------input ------------------------------------------------*/
 
+.no-data{
+  text-align: center;
+  margin-top: 40px;
+}
 
 
 

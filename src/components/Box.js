@@ -5,25 +5,6 @@ import "../style/box.css"
 import Todo from './Todo'
 
 const Box = ({APIData, getData}) => {
-  // const [APIData, setAPIData] = useState([])
-  const url = process.env.REACT_APP_URL
-
-  // const getData = () => {
-  //   axios.get(url)
-  //     .then(data => setAPIData(data.data))
-  // }
-
-  // useEffect(() => {
-  //   getData()
-  // },[])
-
-  const handleDelete = (id) => {
-    axios.delete(url+"/"+id)
-      .then(() => getData())
-  }
-
-  // console.log(APIData);
-
 
   return (
     <div className="box">
@@ -32,12 +13,14 @@ const Box = ({APIData, getData}) => {
         <div className="box__select">
           <div className="box__select-date">
             <select name="date" className="date">
+              <option value="all" selected>all</option>
               <option value="newest">newest</option>
               <option value="oldest">oldest</option>
             </select>
           </div>
           <div className="box__select-completed">
             <select>
+              <option value="all" selected>all</option>
               <option value="">completed</option>
               <option value="">not completed</option>
             </select>
@@ -47,7 +30,7 @@ const Box = ({APIData, getData}) => {
       </form>
       <section className="box__todos">
         {APIData ? (APIData.map(item => (
-          <Todo getData={getData} handleDelete={handleDelete} key={item.id} task={item.task} date={item.date} 
+          <Todo getData={getData} key={item.id} task={item.task} date={item.date} 
           checked={item.checked} id={item.id} />
         ))
         ):(<p>no tasks</p>)}

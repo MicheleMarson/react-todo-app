@@ -1,7 +1,7 @@
 .box{
   max-width: 800px;
   opacity: 1;
-  animation: show 2s;
+  animation: show 3s;
   margin: 30px auto;
 }
 
@@ -26,9 +26,6 @@ select[disabled]{
 
 select option{
   background: transparent;
-}
-
-select option{
   margin-top: 2px;
 }
 

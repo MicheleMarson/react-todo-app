@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-const Form = ({getData}) => {
+const Form = ({getData, APIData}) => {
   let curr = new Date();
   const url = process.env.REACT_APP_URL
   curr.setDate(curr.getDate());
@@ -19,6 +19,7 @@ const Form = ({getData}) => {
         checked: false
       }).then(() => getData())
       // after submition reset values
+      console.log(APIData);
       setNewTask("")
       setInputDate(date)
     }
