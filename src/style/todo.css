@@ -1,0 +1,46 @@
+svg{
+  transition: .250s ease;
+  cursor: pointer;
+  height: 34px;
+  width: 34px;
+  vertical-align: middle;
+}
+
+svg:hover{
+  opacity: .7;
+}
+
+.todo{
+  margin: 10px 0;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  border-radius: 36px;
+  background: var(--light-black);
+}
+
+.todo div{
+  margin: 10px;
+  /* padding: 6px; */
+  height: 34px;
+  width: 34px;
+  background: none;
+}
+
+.todo__task{
+  flex:2;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+}
+
+
+.todo__check svg{
+  display: none;
+}
+
+.todo__check div{
+  margin: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}

@@ -1,17 +1,29 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import "../style/box.css"
 import Todo from './Todo'
 
-const Box = ({todo, setTodo}) => {
-  const [completed, setCompleted] = useState(false)
-  const [APIDate, setAPIDate] = useState([])
+const Box = ({APIData, getData}) => {
+  // const [APIData, setAPIData] = useState([])
+  const url = process.env.REACT_APP_URL
 
-  const handleCompleted = () => {
-    setCompleted(!completed)
-    setTodo({...todo, completed:completed})
-    console.log(todo);
+  // const getData = () => {
+  //   axios.get(url)
+  //     .then(data => setAPIData(data.data))
+  // }
+
+  // useEffect(() => {
+  //   getData()
+  // },[])
+
+  const handleDelete = (id) => {
+    axios.delete(url+"/"+id)
+      .then(() => getData())
   }
+
+  // console.log(APIData);
+
 
   return (
     <div className="box">
@@ -34,7 +46,11 @@ const Box = ({todo, setTodo}) => {
         <div className="box__bottom"></div>
       </form>
       <section className="box__todos">
-        <Todo />
+        {APIData ? (APIData.map(item => (
+          <Todo getData={getData} handleDelete={handleDelete} key={item.id} task={item.task} date={item.date} 
+          checked={item.checked} id={item.id} />
+        ))
+        ):(<p>no tasks</p>)}
       </section>
     </div>
   )

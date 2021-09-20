@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-const Form = () => {
+const Form = ({getData}) => {
   let curr = new Date();
   const url = process.env.REACT_APP_URL
   curr.setDate(curr.getDate());
@@ -12,15 +12,16 @@ const Form = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    // console.log({date:inputDate, task: newTask});
-    // setTodo({task:newTask, date:inputDate, completed:false})
-    axios.post(url, {
-      task:newTask,
-      date: inputDate,
-      checked: false
-    })
-    setNewTask("")
-    setInputDate(date)
+    if(newTask){ // if input is not empty
+      axios.post(url, {
+        task:newTask,
+        date: inputDate,
+        checked: false
+      }).then(() => getData())
+      // after submition reset values
+      setNewTask("")
+      setInputDate(date)
+    }
   }
 
   return (
