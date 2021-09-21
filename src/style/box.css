@@ -15,7 +15,6 @@ select{
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  margin: 10px;
   padding: 10px;
 }
 
@@ -34,7 +33,16 @@ select::-ms-expand {
 }
 
 .box__select{
+  align-items: center;
   display: flex;
+}
+
+.box__select{
+  margin: 10px;
+}
+
+.box__select > *{
+  margin-left: 5px;
 }
 
 .box__search{
@@ -61,6 +69,25 @@ select::-ms-expand {
 .box__todos{
   margin-top: 36px;
   width: 100%;
+}
+
+.box__submit button{
+  text-transform: uppercase;
+  cursor: pointer;
+  height: 36px;
+  border: none;
+  background: var(#fff);
+  color: var(--light-black);
+  padding: 0px 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: .2s ease;
+}
+
+.box__submit button:hover{
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 @keyframes show {

@@ -7,6 +7,7 @@ import UpdateIcon from './UpdateIcon'
 import {currentDate} from "../currentDate"
 
 const Todo = ({task, id, date, checked, getData}) => {
+  const [newInputDate, setNewInputDate] = useState(date)
   const [newTask, setNewTaks] = useState(task)
   const [isChecked, setIsChecked] = useState(checked)
   const [isUpdating, setIsUpdating] = useState(false)
@@ -24,7 +25,7 @@ const Todo = ({task, id, date, checked, getData}) => {
       .then(() => getData())
   }
 
-
+  // update checked
   const handleComplete = (id) => {
     setIsChecked(!isChecked)
     axios.put(url+"/"+id, {
@@ -34,17 +35,14 @@ const Todo = ({task, id, date, checked, getData}) => {
 
   const taskUpdate = (id) => {
     setIsUpdating(!isUpdating)
-    if(newTask != task){ // change task only if we change the input value
+    if(newTask != task || date != newInputDate){ // change task only if we change the input value
       axios.put(url+"/"+id, {
-        task:newTask
+        task:newTask,
+        date:newInputDate
       }).then(() => getData())
     }
-    console.log("task:",task);
-    console.log(newTask != task);
   }
 
-  // const saveUpdate = (id) => {
-  // }
 
   // -------------style----------------------------
   const check = {
@@ -60,9 +58,9 @@ const Todo = ({task, id, date, checked, getData}) => {
     <div className={`todo ${isUpdating?"updating":""}`}>
       <div style={displayCheckOnUpdate} onClick={() => handleComplete(id)} 
         className={`todo__check ${checked?"is-checked":""}`}>
-          {unfinished ? (
-            <div>f</div>
-          ):(
+          {/* {unfinished ? (
+            <div></div>
+          ):( */}
             <div>
               <svg style={{display: checked?"block":"none"}} version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 507.2 507.2" style={{"enable-background":"new 0 0 507.2 507.2"}}>
                 <circle style={{"fill":"#32BA7C"}} cx="253.6" cy="253.6" r="253.6"/>
@@ -73,13 +71,20 @@ const Todo = ({task, id, date, checked, getData}) => {
                   c-11.2,11.2-30.4,11.2-41.6,0l-23.2-23.2c-11.2-11.2-11.2-30.4,0-41.6L348.8,133.6z"/>
               </svg>
             </div>
-          )}
+          {/* )} */}
       </div>
       <div className="todo__task">
-        {/* <p className="todo__date">{date}</p> */}
         {isUpdating?(
-          <input onChange={(e) => setNewTaks(e.target.value)} className="todo__input-update" value={newTask} type="text" />
-        ):(<p className="todo__task--input" style={check}>{task}</p>)}
+          <>
+            <input onChange={(e) => setNewInputDate(e.target.value)} className="todo__input-date" type="date" id="input-date" value={newInputDate} />
+            <input onChange={(e) => setNewTaks(e.target.value)} className="todo__input-update" value={newTask} type="text" />
+          </>
+          ):(
+          <>
+            <p className="todo__date">{date.split("-").splice(1, 2).join("-")}</p>
+            <p className="todo__task--input" style={check}>{task}</p>
+          </>
+        )}
       </div>
       <div onClick={() => taskUpdate(id)} className="todo__update">
         <div style={{display: isUpdating?"block":"none"}} className="todo__update-save">

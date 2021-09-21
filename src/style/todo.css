@@ -44,7 +44,7 @@ svg:hover{
 }
 
 .todo__date{
-  flex-shrink: 6;
+  flex-shrink: 10;
   font-size: 14px;
 }
 
@@ -77,4 +77,12 @@ svg:hover{
   height: 100%;
   margin: 0;
   width: 100%;
+}
+
+.todo__input-date{
+  width: auto;
+}
+
+.todo__input-update{
+  flex-grow: 3;
 }
