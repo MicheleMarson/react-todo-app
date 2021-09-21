@@ -29,7 +29,7 @@ function App() {
     }
   }
 
-  useEffect(() => {// get data on initial load
+  useEffect(() => {// get data on initial load/filtering
     getData()
   },[filterTask, filterChecked])
 
