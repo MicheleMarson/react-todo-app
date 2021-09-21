@@ -58,7 +58,6 @@ const Todo = ({task, id, date, checked, getData}) => {
     display: isUpdating?"none":"block"
   }
   // -------------style----------------------------
-  // style={{display: checked?"block":"none"}}
   return (
     <div className={`todo ${isUpdating?"updating":""}`}>
       <div style={displayCheckOnUpdate} onClick={() => handleComplete(id)} 
