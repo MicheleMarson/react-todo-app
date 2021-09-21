@@ -1,4 +1,4 @@
-preview app -----> https://todo-app-react-inky.vercel.app
+preview app -----> https://react-todo-app-neon.vercel.app
 
 npm i axios
 
