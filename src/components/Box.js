@@ -1,27 +1,12 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React from 'react'
 import "../style/box.css"
 import Todo from './Todo'
-import {checkedOptions, dateOptions} from "../options"
+import {checkedOptions} from "../options"
 
 
-const Box = ({APIData, getData, filterChecked, setFilterChecked, filterTask, setFilterTask}) => {
-  // const url = process.env.REACT_APP_URL
-
-  const handleFilter = (e) => {
-    e.preventDefault()
-    // if(filterChecked == "all"){
-    //   console.log("setting");
-    //   getData()
-    // }else{
-    //   axios.get(`${url}/?checked=${filterChecked}`)
-    //     .then((data) => {
-    //       setAPIData(data.data)
-    //     })
-    // }
-    getData()
-  }
+const Box = (props) => {
+  const {APIData, getData, filterChecked, setFilterChecked,
+    filterTask, setFilterTask} = props
 
   return (
     <div className="box">
@@ -35,9 +20,6 @@ const Box = ({APIData, getData, filterChecked, setFilterChecked, filterTask, set
                 ))}
             </select>
           </div>
-          {/* <div className="box__submit">
-            <button type="submit">Search</button>
-          </div> */}
         </div>
         <div className="box__bottom"></div>
       </form>

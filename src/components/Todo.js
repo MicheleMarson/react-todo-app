@@ -5,14 +5,17 @@ import SaveIcon from './SaveIcon'
 import UpdateIcon from './UpdateIcon'
 // import update from "../img/pencil.svg"
 import {currentDate} from "../currentDate"
+import DeleteIcon from './DeleteIcon'
+import {url} from "../url"
 
 const Todo = ({task, id, date, checked, getData}) => {
+  // state------------------------------------
   const [newInputDate, setNewInputDate] = useState(date)
   const [newTask, setNewTaks] = useState(task)
   const [isChecked, setIsChecked] = useState(checked)
   const [isUpdating, setIsUpdating] = useState(false)
   const [unfinished, setUnfinished] = useState(false) // check if task was completed in time
-  const url = process.env.REACT_APP_URL
+  // state------------------------------------
 
   useEffect(() => {
     if(date === currentDate && !isChecked){
@@ -20,6 +23,7 @@ const Todo = ({task, id, date, checked, getData}) => {
     }
   },[])
 
+  // delete task
   const handleDelete = (id) => {
     axios.delete(url+"/"+id)
       .then(() => getData())
@@ -96,14 +100,7 @@ const Todo = ({task, id, date, checked, getData}) => {
         </div>
       </div>
       <div onClick={() => handleDelete(id)} className="todo__delete">
-        <svg height="512pt" viewBox="0 0 512 512" width="512pt">
-          <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#f44336"/>
-          <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 
-          0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 
-          0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 
-          0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 
-          8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0" fill="#fafafa"/>
-        </svg>
+        <DeleteIcon/>
       </div>
     </div>
   )

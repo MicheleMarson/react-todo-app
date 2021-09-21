@@ -2,12 +2,14 @@ import axios from 'axios'
 import React, {useEffect, useState} from "react"
 import Box from "./components/Box";
 import Form from "./components/Form";
+import {url} from "./url"
 
 function App() {
+  // state------------------------------------
   const [filterTask, setFilterTask] = useState("")
   const [filterChecked, setFilterChecked] = useState("all")
   const [APIData, setAPIData] = useState([])
-  const url = process.env.REACT_APP_URL
+  // state------------------------------------
 
   const filterText = (item) => {
     return item.task.toLowerCase().includes(filterTask.toLowerCase())
@@ -25,7 +27,6 @@ function App() {
           setAPIData(data.data.filter((i) => filterText(i)))
         })
     }
-    console.log(filterTask);
   }
 
   useEffect(() => {// get data on initial load
@@ -36,9 +37,11 @@ function App() {
     <div className="app">
       <h1 className="app__title">Todo App</h1>
       <Form APIData={APIData} getData={getData}/>
-      <Box setAPIData={setAPIData} APIData={APIData} getData={getData} 
-      filterChecked={filterChecked} setFilterChecked={setFilterChecked}
-      filterTask={filterTask} setFilterTask={setFilterTask} />
+      <Box 
+        setAPIData={setAPIData} APIData={APIData} getData={getData} 
+        filterChecked={filterChecked} setFilterChecked={setFilterChecked}
+        filterTask={filterTask} setFilterTask={setFilterTask} 
+      />
     </div>
   );
 }
