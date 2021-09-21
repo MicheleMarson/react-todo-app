@@ -11,8 +11,4 @@ export const checkedOptions = [
     label: "not completed",
     value: "false",
   },
-  {
-    label: "failed",
-    value: "true",
-  },
 ];

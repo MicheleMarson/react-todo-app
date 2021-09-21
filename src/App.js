@@ -16,7 +16,7 @@ function App() {
   }
 
   const getData = () => { 
-    if(filterChecked == "all"){
+    if(filterChecked === "all"){
       axios.get(url)
         .then(data => {
           setAPIData(data.data.filter((i) => filterText(i)))

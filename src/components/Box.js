@@ -15,9 +15,9 @@ const Box = (props) => {
         <div className="box__select">
           <div className="box__select-completed">
             <select onChange={(e) => setFilterChecked(e.target.value)} value={filterChecked} name="is-completed">
-                {checkedOptions.map(item => (
-                  <option value={item.value}>{item.label}</option>
-                ))}
+              {checkedOptions.map((item, i) => (
+                <option key={i} value={item.value}>{item.label}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -25,7 +25,7 @@ const Box = (props) => {
       </form>
       <section className="box__todos">
         {APIData.length > 0 ? (APIData.map(item => (
-          <Todo getData={getData} key={item.id} task={item.task} date={item.date} 
+          <Todo key={item.id} getData={getData} task={item.task} date={item.date} 
           checked={item.checked} id={item.id} />
         ))):(
           <h2 className="no-data">Todo list empty</h2>
