@@ -6,27 +6,26 @@ import Todo from './Todo'
 import {checkedOptions, dateOptions} from "../options"
 
 
-const Box = ({APIData, getData, setAPIData}) => {
-  const [filterChecked, setFilterChecked] = useState("all")
-  const [filterTask, setFilterTask] = useState("")
-  const url = process.env.REACT_APP_URL
+const Box = ({APIData, getData, filterChecked, setFilterChecked, filterTask, setFilterTask}) => {
+  // const url = process.env.REACT_APP_URL
 
   const handleFilter = (e) => {
     e.preventDefault()
-    if(filterChecked == "all"){
-      console.log("setting");
-      getData()
-    }else{
-      axios.get(`${url}/?checked=${filterChecked}`)
-        .then((data) => {
-          setAPIData(data.data)
-        })
-    }
+    // if(filterChecked == "all"){
+    //   console.log("setting");
+    //   getData()
+    // }else{
+    //   axios.get(`${url}/?checked=${filterChecked}`)
+    //     .then((data) => {
+    //       setAPIData(data.data)
+    //     })
+    // }
+    getData()
   }
 
   return (
     <div className="box">
-      <form onSubmit={handleFilter.bind(this)} className="box__search">
+      <form className="box__search">
         <input placeholder="search..." value={filterTask} onChange={(e) => setFilterTask(e.target.value)} />
         <div className="box__select">
           <div className="box__select-completed">
@@ -36,17 +35,19 @@ const Box = ({APIData, getData, setAPIData}) => {
                 ))}
             </select>
           </div>
-          <div className="box__submit">
+          {/* <div className="box__submit">
             <button type="submit">Search</button>
-          </div>
+          </div> */}
         </div>
         <div className="box__bottom"></div>
       </form>
       <section className="box__todos">
-        {APIData.map(item => (
+        {APIData.length > 0 ? (APIData.map(item => (
           <Todo getData={getData} key={item.id} task={item.task} date={item.date} 
           checked={item.checked} id={item.id} />
-        ))}
+        ))):(
+          <h2 className="no-data">Todo list empty</h2>
+        )}
       </section>
     </div>
   )
