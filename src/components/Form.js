@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import {currentDate} from "../currentDate"
+import {url} from "../url"
 
 const Form = ({getData, APIData}) => {
   // date is the time the task shoud be finished
-  // setting the default date
-  const url = process.env.REACT_APP_URL 
-  // let curr = new Date();
-  // curr.setDate(curr.getDate());
-  // let date =  curr.toISOString().substr(0,10)
   // setting the default date
 
   const [inputDate, setInputDate] = useState(currentDate) // if date is not provided get the current date

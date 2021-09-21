@@ -15,14 +15,6 @@ const Todo = ({task, id, date, checked, getData}) => {
   const [newTask, setNewTaks] = useState(task)
   const [isChecked, setIsChecked] = useState(checked)
   const [isUpdating, setIsUpdating] = useState(false)
-  // const [unfinished, setUnfinished] = useState(false) // check if task was completed in time
-  // state------------------------------------
-
-  // useEffect(() => {
-  //   if(date === currentDate && !isChecked){
-  //     setUnfinished(true)
-  //   }
-  // },[])
 
   // delete task
   const handleDelete = (id) => {
@@ -74,7 +66,7 @@ const Todo = ({task, id, date, checked, getData}) => {
           </>
           ):(
           <>
-            <p className="todo__date">{date.split("-").splice(1, 2).join("-")}</p>
+            <p style={{display: isUpdating || isChecked?"none":"block"}} className="todo__date">{date.split("-").splice(1, 2).join("-")}</p>
             <p className="todo__task--input" style={check}>{task}</p>
           </>
         )}
