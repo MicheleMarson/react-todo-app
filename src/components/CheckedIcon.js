@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CheckedIcon = ({checked}) => {
+const CheckedIcon = React.memo(({checked}) => {
   return (
     <svg style={{display: checked?"block":"none"}} version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 507.2 507.2">
       <circle style={{"fill":"#32BA7C"}} cx="253.6" cy="253.6" r="253.6"/>
@@ -11,6 +11,6 @@ const CheckedIcon = ({checked}) => {
         c-11.2,11.2-30.4,11.2-41.6,0l-23.2-23.2c-11.2-11.2-11.2-30.4,0-41.6L348.8,133.6z"/>
     </svg>
 )
-}
+})
 
 export default CheckedIcon
