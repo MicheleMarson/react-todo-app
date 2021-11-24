@@ -9,7 +9,7 @@ import DeleteIcon from './DeleteIcon'
 import {url} from "../url"
 import CheckedIcon from './CheckedIcon'
 
-const Todo = ({task, id, date, checked, getData}) => {
+const Todo = React.memo(({task, id, date, checked, getData}) => {
   // state------------------------------------
   const [newInputDate, setNewInputDate] = useState(date)
   const [newTask, setNewTaks] = useState(task)
@@ -85,6 +85,6 @@ const Todo = ({task, id, date, checked, getData}) => {
       </div>
     </div>
   )
-}
+})
 
 export default Todo
