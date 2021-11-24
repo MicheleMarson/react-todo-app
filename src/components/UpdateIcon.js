@@ -1,4 +1,6 @@
-const UpdateIcon = () => {
+import React from "react"
+
+const UpdateIcon = React.memo(() => {
   return(
     <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 300 300">
       <path d="M149.996,0C67.157,0,0.001,67.161,0.001,149.997S67.157,300,149.996,300s150.003-67.163,150.003-150.003
@@ -9,5 +11,5 @@ const UpdateIcon = () => {
       C222.982,103.541,222.982,106.267,221.302,107.945z" fill="#36D2F4"/>
     </svg>
   )
-}
+})
 export default UpdateIcon
