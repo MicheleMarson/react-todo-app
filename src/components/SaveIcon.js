@@ -1,4 +1,6 @@
-const SaveIcon = () => {
+import React from "react"
+
+const SaveIcon = React.memo(() => {
   return(
     <svg viewBox="-27 0 512 512.00052" width="512pt">
       <path d="m32.308594 256.488281c0 65.777344 32.679687 123.921875 82.6875 159.082031 
@@ -21,6 +23,6 @@ const SaveIcon = () => {
       27.222656-7.570312 36.3125 3.394531 9.089843 10.964844 7.570312 27.222657-3.394532 36.3125zm0 0" fill="#35e298"/>
   </svg>
   )
-}
+})
 
 export default SaveIcon
