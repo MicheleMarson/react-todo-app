@@ -3,7 +3,7 @@ import axios from 'axios';
 import {currentDate} from "../currentDate"
 import {url} from "../url"
 
-const Form = ({getData, APIData}) => {
+const Form = React.memo(({getData, APIData}) => {
   // date is the time the task shoud be finished
   // setting the default date
 
@@ -43,6 +43,6 @@ const Form = ({getData, APIData}) => {
       </button>
     </form>
   )
-}
+})
 
 export default Form
