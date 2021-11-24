@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeleteIcon = () => {
+const DeleteIcon = React.memo(() => {
   return (
     <svg height="512pt" viewBox="0 0 512 512" width="512pt">
       <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#f44336"/>
@@ -11,6 +11,6 @@ const DeleteIcon = () => {
       8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0" fill="#fafafa"/>
     </svg>
   )
-}
+})
 
 export default DeleteIcon
