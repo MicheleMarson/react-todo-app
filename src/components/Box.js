@@ -4,7 +4,7 @@ import Todo from './Todo'
 import {checkedOptions} from "../options"
 
 
-const Box = (props) => {
+const Box = React.memo((props) => {
   const {APIData, getData, filterChecked, setFilterChecked,
     filterTask, setFilterTask} = props
 
@@ -33,6 +33,6 @@ const Box = (props) => {
       </section>
     </div>
   )
-}
+})
 
 export default Box
