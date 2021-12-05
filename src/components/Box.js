@@ -24,7 +24,7 @@ const Box = (props) => {
         <div className="box__bottom"></div>
       </form>
       <section className="box__todos">
-        {APIData.length > 0 ? (APIData.map(item => (
+        {APIData.length ? (APIData.map(item => (
           <Todo key={item.id} getData={getData} task={item.task} date={item.date} 
           checked={item.checked} id={item.id} />
         ))):(
