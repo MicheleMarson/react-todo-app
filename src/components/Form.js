@@ -27,7 +27,7 @@ const Form = React.memo(({getData, APIData}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit.bind(this)} className="app__inputBox">
+    <form onSubmit={(e) => handleSubmit(e)} className="app__inputBox">
       <div className="app__input">
         <div id="input-wrap">
           <input autoComplete="off" type="text" id="input-task" value={newTask}
